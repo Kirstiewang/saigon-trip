@@ -433,6 +433,9 @@ section{scroll-margin-top:80px}
 <!-- day pages injected here -->
 <div id="days"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>try{firebase.initializeApp({apiKey:"AIzaSyCoXAgqrHHesaEpOosh3SzuhPiyV4xMFWc",authDomain:"saigon-trip-e47d0.firebaseapp.com",projectId:"saigon-trip-e47d0",storageBucket:"saigon-trip-e47d0.firebasestorage.app",messagingSenderId:"1074785323089",appId:"1:1074785323089:web:6acbffa9d4daed12009070"});}catch(e){console.warn("firebase init skipped",e);}</script>
 <script>
 /* ============ PHOTOS (embedded from PDF) ============ */
 const DAYMAP={};
@@ -774,7 +777,7 @@ function loadLocal(){try{return JSON.parse(localStorage.getItem(LKEY)||'{}');}ca
 function saveLocal(o){try{localStorage.setItem(LKEY,JSON.stringify(o));}catch(e){}}
 
 async function initShared(){
-  try{ DB = (window.claude&&claude.use)?await claude.use('db'):null; }catch(e){ DB=null; }
+  try{ DB = (window.firebase&&firebase.firestore)?firebase.firestore():null; }catch(e){ DB=null; }
   if(DB){
     MODE='shared';
     try{
