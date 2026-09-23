@@ -62,7 +62,7 @@ img{max-width:100%}
 ::selection{background:var(--lotus);color:#fff}
 
 /* ---------- layout ---------- */
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,46px)}
 section{scroll-margin-top:80px}
 .hidden{display:none!important}
 
@@ -182,7 +182,7 @@ section{scroll-margin-top:80px}
 .c2photo img{width:100%;height:100%;object-fit:cover;display:block}
 .card2 .c2body{flex:1;min-width:0;padding:13px 15px 13px 14px}
 .warn{margin-top:7px;font-size:12px;line-height:1.55;color:var(--saffron);background:rgba(94,31,38,.06);border-left:2px solid var(--saffron);padding:6px 10px;border-radius:6px}
-.hop{display:flex;align-items:center;gap:9px;margin:3px 0 3px 20px;padding:1px 0}
+.hop{display:flex;align-items:center;gap:9px;margin:6px 0 6px 12px;padding:1px 0}
 .hop .hopline{width:2px;height:15px;background:var(--line);margin-left:8px;border-radius:2px;flex:none}
 .hop .hoptxt{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.02em;color:var(--ink-soft)}
 .hop.far .hoptxt{color:var(--saffron)}
@@ -281,6 +281,11 @@ section{scroll-margin-top:80px}
 .itemwrap{scroll-margin-top:72px}
 .itemwrap.flash .card2{animation:flashcard 1.5s ease}
 @keyframes flashcard{0%,100%{box-shadow:0 0 0 0 rgba(176,64,43,0)}16%{box-shadow:0 0 0 3px rgba(176,64,43,.55)}}
+.tcard{font-family:"DM Mono",monospace;font-size:12.5px;color:var(--ink-soft);flex:none}
+.card2.opt{border-style:dashed}
+.tl{max-width:820px;margin:0 auto;padding-left:0}
+.tl::before{display:none}
+.added{max-width:820px;margin-left:auto;margin-right:auto}
 </style>
 </head>
 <body>
@@ -297,12 +302,10 @@ section{scroll-margin-top:80px}
   <header class="hero wrap">
     <span class="kicker">✳ 自助旅行 · 五天四夜 · KiN Hotel Central Park</span>
     <h1 class="lat">SÀI<br><span class="a">GÒN</span> <span class="b">'26</span></h1>
-    <p class="sub serif">胡志明市，五天四夜。<br>咖啡、選物、河粉與一點越南的下午。</p>
+    <p class="sub serif">狂買、狂吃、狂喝<br>—— 胡志明貴婦團</p>
     <div class="meta">
       <span class="pill">📅 9/26 SAT → 9/30 WED</span>
       <span class="pill">🛬 10:15 SGN</span>
-      <span class="pill sun">☀ 週日 SÂM Bar</span>
-      <span class="pill hot">🍕 Day1 Pizza 4P's</span>
     </div>
   </header>
 
@@ -465,14 +468,14 @@ const DAYS = [
     landmarks:[{name:"Hồ Con Rùa 龜湖",lat:10.7825,lng:106.6960},{name:"Bến Thành 市場",lat:10.7723,lng:106.6980}],
     items:[
       HOTEL,
-      {t:"12:30", name:"Pizza 4P's（Hai Bà Trưng 店）", vi:"Pizza 4P's, 151A-151B Hai Bà Trưng, Quận 1, Hồ Chí Minh", type:"food", note:"越南最有名的窯烤 pizza，招牌是會牽絲的自製布拉塔（burrata）與半熟蛋 pizza。這家 Hai Bà Trưng 分店離飯店走路可到，剛好當落地第一餐。", img:"pizza4ps", lat:10.7845, lng:106.6928, street:"Hai Bà Trưng"},
-      {t:"14:00", name:"OHQUAO The Local Edit", vi:"OHQUAO, 58/12 Phạm Ngọc Thạch, Hồ Chí Minh", type:"shop", note:"龜湖旁巷弄裡的在地設計選物，服裝與配件走簡約線條。空間不大但選件有觀點，適合慢慢翻。", img:"ohquao", lat:10.7862, lng:106.6942, street:"Phạm Ngọc Thạch"},
-      {t:"14:40", name:"Nhà Ba Teria", vi:"Nhà Ba Teria, 72/17 Trần Quốc Toản, Hồ Chí Minh", type:"cafe", note:"評分普通、但裝潢是重點：弧形土色牆面與復古傢俱很好拍。路過順進、拍幾張喝杯東西就好，不用特地排。", img:"nhabateria", opt:true, lat:10.7885, lng:106.6905, street:"Trần Quốc Toản"},
-      {t:"15:10", name:"ngâm CAFE", vi:"ngâm CAFE, 193/19 Nam Kỳ Khởi Nghĩa, Hồ Chí Minh", type:"cafe", note:"藏在巷內的安靜咖啡，木質與植栽堆疊出慵懶的午後感。逛累了坐下來、放空半小時剛好。", img:"ngam", lat:10.7900, lng:106.6885, street:"Nam Kỳ Khởi Nghĩa"},
-      {t:"15:50", name:"Ném Space", vi:"Ném Space, 18/1 Ngô Thời Nhiệm, Hồ Chí Minh", type:"shop", note:"以燈飾與家居選物為主的小店，暖黃燈光把空間打得很有氛圍。找旅行帶得走的小物、或純粹看陳列都值得。", img:"nem", lat:10.7808, lng:106.6905, street:"Ngô Thời Nhiệm"},
-      {t:"16:40", name:"A Ă Â Concept Store", vi:"A Ă Â Concept Store, 246 Nguyễn Thị Minh Khai, Hồ Chí Minh", type:"shop", note:"越南本地設計選物，綠色拱形空間本身就是一個場景。服裝、生活小物與設計單品混搭，拍照與挖寶都不虧，收在西南側剛好接晚餐。", img:"aaconcept", lat:10.7710, lng:106.6890, street:"Nguyễn Thị Minh Khai"},
-      {t:"18:30", name:"錦麗河粉", vi:"錦麗河粉 Phở, 303-305 Võ Văn Tần, Hồ Chí Minh", type:"food", note:"第三區的在地河粉，湯頭清爽、份量實在、價格親民。就在 A Ă Â 附近，當第一天晚餐收尾不踩雷。", img:"kimly", lat:10.7720, lng:106.6870, street:"Võ Văn Tần"},
-      {t:"19:30", name:"Mặn Mòi, Tao Đàn", vi:"Mặn Mòi, 34 Võ Văn Tần, Hồ Chí Minh", type:"food", note:"藏在 Tao Đàn 公園一帶、綠意環繞的越式創作料理，環境比一般小館精緻。想吃好一點就選這家，記得先訂位。", img:"manmoi", opt:true, book:true, lat:10.7745, lng:106.6885, street:"Võ Văn Tần"},
+      {t:"12:30", name:"Pizza 4P's（Hai Bà Trưng 店）", vi:"Pizza 4P's, 151A-151B Hai Bà Trưng, Quận 1, Hồ Chí Minh", type:"food", note:"越南最有名的窯烤 pizza，招牌是會牽絲的自製布拉塔（burrata）與半熟蛋 pizza。這家 Hai Bà Trưng 分店離飯店走路可到，剛好當落地第一餐。", img:"pizza4ps", lat:10.783116, lng:106.6970677, street:"Hai Bà Trưng"},
+      {t:"14:00", name:"OHQUAO The Local Edit", vi:"OHQUAO, 58/12 Phạm Ngọc Thạch, Hồ Chí Minh", type:"shop", note:"龜湖旁巷弄裡的在地設計選物，服裝與配件走簡約線條。空間不大但選件有觀點，適合慢慢翻。", img:"ohquao", lat:10.7863726, lng:106.6927354, street:"Phạm Ngọc Thạch"},
+      {t:"14:40", name:"Nhà Ba Teria", vi:"Nhà Ba Teria, 72/17 Trần Quốc Toản, Hồ Chí Minh", type:"cafe", note:"評分普通、但裝潢是重點：弧形土色牆面與復古傢俱很好拍。路過順進、拍幾張喝杯東西就好，不用特地排。", img:"nhabateria", opt:true, lat:10.7874978, lng:106.6872779, street:"Trần Quốc Toản"},
+      {t:"15:10", name:"ngâm CAFE", vi:"ngâm CAFE, 193/19 Nam Kỳ Khởi Nghĩa, Hồ Chí Minh", type:"cafe", note:"藏在巷內的安靜咖啡，木質與植栽堆疊出慵懶的午後感。逛累了坐下來、放空半小時剛好。", img:"ngam", lat:10.7864405, lng:106.6861926, street:"Nam Kỳ Khởi Nghĩa"},
+      {t:"15:50", name:"Ném Space", vi:"Ném Space, 18/1 Ngô Thời Nhiệm, Hồ Chí Minh", type:"shop", note:"以燈飾與家居選物為主的小店，暖黃燈光把空間打得很有氛圍。找旅行帶得走的小物、或純粹看陳列都值得。", img:"nem", lat:10.7799324, lng:106.6885357, street:"Ngô Thời Nhiệm"},
+      {t:"16:40", name:"A Ă Â Concept Store", vi:"A Ă Â Concept Store, 246 Nguyễn Thị Minh Khai, Hồ Chí Minh", type:"shop", note:"越南本地設計選物，綠色拱形空間本身就是一個場景。服裝、生活小物與設計單品混搭，拍照與挖寶都不虧，收在西南側剛好接晚餐。", img:"aaconcept", lat:10.7742399, lng:106.6896965, street:"Nguyễn Thị Minh Khai"},
+      {t:"18:30", name:"錦麗河粉", vi:"錦麗河粉 Phở, 303-305 Võ Văn Tần, Hồ Chí Minh", type:"food", note:"第三區的在地河粉，湯頭清爽、份量實在、價格親民。就在 A Ă Â 附近，當第一天晚餐收尾不踩雷。", img:"kimly", lat:10.7718117, lng:106.6860178, street:"Võ Văn Tần"},
+      {t:"18:30", name:"Mặn Mòi, Tao Đàn", vi:"Mặn Mòi, 34 Võ Văn Tần, Hồ Chí Minh", type:"food", note:"藏在 Tao Đàn 公園一帶、綠意環繞的越式創作料理，環境比一般小館精緻。想吃好一點就選這家，記得先訂位。", img:"manmoi", opt:true, book:true, lat:10.7786789, lng:106.6920178, street:"Võ Văn Tần"}
     ]
   },
   {
@@ -481,17 +484,17 @@ const DAYS = [
     landmarks:[{name:"植物園 Zoo",lat:10.7875,lng:106.7050}],
     canal:{name:"Nhiêu Lộc 運河",pts:[{lat:10.7928,lng:106.6815},{lat:10.7895,lng:106.6995}]},
     items:[
-      {t:"09:30", name:"新定教堂 Tân Định Church", vi:"Tân Định Church, 289 Hai Bà Trưng, Hồ Chí Minh", type:"sight", note:"糖果粉紅色的哥德式教堂，是西貢最上鏡的地標之一。早上順光最好拍，當作一天的開場。", warn:"⏰ 週日僅 06:30–10:30、16:30–20:30 開放；你排 09:30，記得 10:30 前到。", img:"church", lat:10.7905, lng:106.6905, street:"Hai Bà Trưng"},
-      {t:"10:15", name:"16 Grams Café", vi:"16 Grams Café, 32 Thạch Thị Thanh, Tân Định, Hồ Chí Minh", type:"cafe", note:"Tân Định 一帶的早午餐咖啡，綠窗老屋外觀很有味道。手沖與早午餐都穩，適合開啟慢慢逛的一天。", img:"grams16", lat:10.7930, lng:106.6885, street:"Thạch Thị Thanh"},
-      {t:"11:15", name:"Sipply Coffee Roastery", vi:"Sipply Coffee Roastery, 73 Đinh Công Tráng, Hồ Chí Minh", type:"cafe", note:"自家烘焙的精品咖啡，空間窄但豆子講究。愛喝咖啡的話值得再加一杯單品。", img:"sipply", opt:true, lat:10.7935, lng:106.6900, street:"Đinh Công Tráng"},
-      {t:"11:45", name:"JELLYFISH SAIGON", vi:"JELLYFISH SAIGON, 14 Nguyễn Văn Nguyễn, Tân Định, Hồ Chí Minh", type:"shop", note:"Tân Định 的選物店，服裝與配件選件有自己的調性。店面不大，翻起來卻常有驚喜。", img:"jellyfish", lat:10.7920, lng:106.6895, street:"Nguyễn Văn Nguyễn"},
-      {t:"12:45", name:"Phở Chất", vi:"Phở Chất, 223 Đinh Tiên Hoàng, Tân Định, Hồ Chí Minh", type:"food", note:"在地人氣河粉，湯清、肉足、價格實在。中午來一碗暖胃，補足上午逛街的體力。", img:"phochat", lat:10.7955, lng:106.6905, street:"Đinh Tiên Hoàng"},
-      {t:"14:00", name:"RUE MICHE Boutique", vi:"RUE MICHE Boutique, 9B Phùng Khắc Khoan, Hồ Chí Minh", type:"shop", note:"Rue Miche 的精品選物店，服飾與配件走低調質感路線。想找設計感單品、或看陳列美學都合適。", img:"ruemicheboutique", lat:10.7885, lng:106.6955, street:"Phùng Khắc Khoan"},
-      {t:"14:45", name:"Make Room Café", vi:"Make Room Café, 25/32 Nguyễn Bỉnh Khiêm, Hồ Chí Minh", type:"cafe", note:"Đa Kao 的人氣咖啡，綠磚外牆與「make room」招牌辨識度極高。空間舒服、好拍，適合午後坐一下。", img:"makeroom", lat:10.7880, lng:106.6975, street:"Nguyễn Bỉnh Khiêm"},
-      {t:"15:45", name:"INDUSLISM", vi:"INDUSLISM, 3 Hoàng Sa, Hồ Chí Minh", type:"cafe", note:"運河邊的多層次裝潢系咖啡，評分普通但空間非常吸睛。來這裡主要是拍照與感受氛圍，飲品其次。", img:"induslism", lat:10.7905, lng:106.6860, street:"Hoàng Sa"},
-      {t:"16:45", name:"Rose Spa DAKAO", vi:"Rose Spa DAKAO, 36 Trần Quang Khải, Hồ Chí Minh", type:"spa", note:"在地平價 spa，可做全身按摩與洗頭，環境乾淨放鬆。想在逛街間放鬆一下再排，抓 1.5–2 小時。", img:"rosespa", opt:true, lat:10.7930, lng:106.6940, street:"Trần Quang Khải"},
-      {t:"18:30", name:"晚餐（Tân Định／Đa Kao 週邊）", vi:"restaurants Tân Định, Quận 1, Hồ Chí Minh", type:"food", note:"SÂM 前先吃飽，別空腹喝草本調酒。這一帶餐館多，用 Capichi 挑一間坐下來吃。", lat:10.7915, lng:106.6900, street:""},
-      {t:"20:00", name:"SÂM Herbal Bar", vi:"SÂM Herbal Bar, 51 Trần Nhật Duật, Hồ Chí Minh", type:"bar", note:"以草本入酒的特色酒吧，調性沉靜、適合夜晚小酌。你指定的週日八點後場，配一點小食收尾一天。", img:"sam", lat:10.7900, lng:106.6875, street:"Trần Nhật Duật"},
+      {t:"09:30", name:"新定教堂 Tân Định Church", vi:"Tân Định Church, 289 Hai Bà Trưng, Hồ Chí Minh", type:"sight", note:"糖果粉紅色的哥德式教堂，是西貢最上鏡的地標之一。早上順光最好拍，當作一天的開場。", warn:"⏰ 週日僅 06:30–10:30、16:30–20:30 開放；你排 09:30，記得 10:30 前到。", img:"church", lat:10.7883359, lng:106.6906789, street:"Hai Bà Trưng"},
+      {t:"10:15", name:"16 Grams Café", vi:"16 Grams Café, 32 Thạch Thị Thanh, Tân Định, Hồ Chí Minh", type:"cafe", note:"Tân Định 一帶的早午餐咖啡，綠窗老屋外觀很有味道。手沖與早午餐都穩，適合開啟慢慢逛的一天。", img:"grams16", lat:10.7903675, lng:106.693005, street:"Thạch Thị Thanh"},
+      {t:"11:00", name:"Sipply Coffee Roastery", vi:"Sipply Coffee Roastery, 73 Đinh Công Tráng, Hồ Chí Minh", type:"cafe", note:"自家烘焙的精品咖啡，空間窄但豆子講究。愛喝咖啡的話值得再加一杯單品。", img:"sipply", opt:true, lat:10.7890627, lng:106.6911128, street:"Đinh Công Tráng"},
+      {t:"11:35", name:"JELLYFISH SAIGON", vi:"JELLYFISH SAIGON, 14 Nguyễn Văn Nguyễn, Tân Định, Hồ Chí Minh", type:"shop", note:"Tân Định 的選物店，服裝與配件選件有自己的調性。店面不大，翻起來卻常有驚喜。", img:"jellyfish", lat:10.7918301, lng:106.6880357, street:"Nguyễn Văn Nguyễn"},
+      {t:"12:30", name:"Phở Chất", vi:"Phở Chất, 223 Đinh Tiên Hoàng, Tân Định, Hồ Chí Minh", type:"food", note:"在地人氣河粉，湯清、肉足、價格實在。中午來一碗暖胃，補足上午逛街的體力。", img:"phochat", lat:10.7923873, lng:106.6957676, street:"Đinh Tiên Hoàng"},
+      {t:"13:30", name:"Rose Spa DAKAO", vi:"Rose Spa DAKAO, 36 Trần Quang Khải, Hồ Chí Minh", type:"spa", note:"在地平價 spa，可做全身按摩與洗頭，環境乾淨放鬆。想在逛街間放鬆一下再排，抓 1.5–2 小時。", img:"rosespa", opt:true, lat:10.7926326, lng:106.6947747, street:"Trần Quang Khải"},
+      {t:"15:15", name:"RUE MICHE Boutique", vi:"RUE MICHE Boutique, 9B Phùng Khắc Khoan, Hồ Chí Minh", type:"shop", note:"Rue Miche 的精品選物店，服飾與配件走低調質感路線。想找設計感單品、或看陳列美學都合適。", img:"ruemicheboutique", lat:10.7842217, lng:106.6980123, street:"Phùng Khắc Khoan"},
+      {t:"15:55", name:"Make Room Café", vi:"Make Room Café, 25/32 Nguyễn Bỉnh Khiêm, Hồ Chí Minh", type:"cafe", note:"Đa Kao 的人氣咖啡，綠磚外牆與「make room」招牌辨識度極高。空間舒服、好拍，適合午後坐一下。", img:"makeroom", lat:10.787507, lng:106.7039196, street:"Nguyễn Bỉnh Khiêm"},
+      {t:"16:40", name:"INDUSLISM", vi:"INDUSLISM, 3 Hoàng Sa, Hồ Chí Minh", type:"cafe", note:"運河邊的多層次裝潢系咖啡，評分普通但空間非常吸睛。來這裡主要是拍照與感受氛圍，飲品其次。", img:"induslism", lat:10.7910424, lng:106.7046291, street:"Hoàng Sa"},
+      {t:"18:30", name:"晚餐（Tân Định／Đa Kao 週邊）", vi:"restaurants Tân Định, Quận 1, Hồ Chí Minh", type:"food", note:"SÂM 前先吃飽，別空腹喝草本調酒。這一帶餐館多，用 Capichi 挑一間坐下來吃。", lat:10.79, lng:106.6905, street:""},
+      {t:"20:00", name:"SÂM Herbal Bar", vi:"SÂM Herbal Bar, 51 Trần Nhật Duật, Hồ Chí Minh", type:"bar", note:"以草本入酒的特色酒吧，調性沉靜、適合夜晚小酌。你指定的週日八點後場，配一點小食收尾一天。", img:"sam", lat:10.7939857, lng:106.68964, street:"Trần Nhật Duật"}
     ]
   },
   {
@@ -501,14 +504,14 @@ const DAYS = [
     canal:{name:"Nhiêu Lộc 運河",pts:[{lat:10.7900,lng:106.6760},{lat:10.7980,lng:106.6835}]},
     items:[
       {t:"09:00", name:"早餐咖啡（飯店周邊）", vi:"cafes near 223 Hai Bà Trưng, Quận 3, Hồ Chí Minh", type:"cafe", note:"出發前先在飯店附近喝杯咖啡、吃點東西，再 Grab 去 Lê Văn Sỹ。這天偏外圍，先補足能量再出發。", opt:true, lat:10.7885, lng:106.6915, street:"Hai Bà Trưng"},
-      {t:"11:00", name:"wardrobe_arc（一店＋二店）", vi:"wardrobe arc, 351/42 Lê Văn Sỹ, Hồ Chí Minh", type:"shop", note:"Lê Văn Sỹ 上的 vintage／選物店，351/42 與 351/44 兩間相鄰、一次逛完。挖二手與古著的好起點，價格與品項都友善。", img:"wardrobe", lat:10.7930, lng:106.6790, street:"Lê Văn Sỹ"},
-      {t:"11:45", name:"Mozaic Space", vi:"Mozaic Space, 31/23 Lê Văn Sỹ, Hồ Chí Minh", type:"shop", note:"Lê Văn Sỹ 一帶的選物空間，陳列鬆、東西雜但有挖寶感。慢慢翻常能撿到有趣的單品。", img:"mozaic", lat:10.7935, lng:106.6795, street:"Lê Văn Sỹ"},
-      {t:"12:30", name:"午餐（Lê Văn Sỹ 週邊）", vi:"restaurants near Lê Văn Sỹ, Phú Nhuận, Hồ Chí Minh", type:"food", note:"這一帶小吃多，看當下想吃什麼、用 Capichi 找就好。別逛到忘記吃，先坐下來補一餐。", lat:10.7945, lng:106.6800, street:"Lê Văn Sỹ"},
-      {t:"14:00", name:"BUNNYHILL CONCEPT®", vi:"BUNNYHILL CONCEPT, 25 Trần Quang Diệu, Hồ Chí Minh", type:"shop", note:"概念選物店，服裝造型與陳列都很有態度。是你路線裡沿 Lê Văn Sỹ 往 Bunnyhill 方向的重點站。", img:"bunnyhill", lat:10.7955, lng:106.6805, street:"Trần Quang Diệu"},
-      {t:"14:40", name:"Bloom 2hand", vi:"Bloom 2hand, 113/6 Trần Quang Diệu, Hồ Chí Minh", type:"shop", note:"二手 vintage 店，木質空間裡堆滿古著與小物。品質參差、但有時間有精力慢慢挖就會有收穫。", img:"bloom", lat:10.7958, lng:106.6800, street:"Trần Quang Diệu"},
-      {t:"15:20", name:"AAA JEWELRY", vi:"AAA JEWELRY, 149A Nguyễn Phúc Nguyên, Hồ Chí Minh", type:"shop", note:"以飾品為主的選物，古董感陳列很好逛。挑幾件小飾品替造型收個尾。", warn:"🗓️ 這家週二公休；行程排在週一沒問題，營業至 19:00。", img:"aaajewelry", lat:10.7965, lng:106.6770, street:"Nguyễn Phúc Nguyên"},
-      {t:"16:30", name:"Facial Bar Võ Thị Sáu", vi:"Facial Bar, 94 Võ Thị Sáu, Hồ Chí Minh", type:"spa", note:"Võ Thị Sáu 上的臉部保養，環境舒服、價格親民。想做臉再排，非必要；一天洗頭＋spa 最多兩項。", img:"facialbar", opt:true, lat:10.7885, lng:106.6890, street:"Võ Thị Sáu"},
-      {t:"18:30", name:"晚餐（回第三區方向）", vi:"restaurants Quận 3, Hồ Chí Minh", type:"food", note:"往飯店方向收，晚餐彈性選。逛了一整天，挑一家順路、坐得下的好好吃。", lat:10.7860, lng:106.6900, street:"Quận 3"},
+      {t:"10:30", name:"Bloom 2hand", vi:"Bloom 2hand, 113/6 Trần Quang Diệu, Hồ Chí Minh", type:"shop", note:"二手 vintage 店，木質空間裡堆滿古著與小物。品質參差、但有時間有精力慢慢挖就會有收穫。", img:"bloom", lat:10.790954, lng:106.6779534, street:"Trần Quang Diệu"},
+      {t:"11:00", name:"BUNNYHILL CONCEPT®", vi:"BUNNYHILL CONCEPT, 25 Trần Quang Diệu, Hồ Chí Minh", type:"shop", note:"概念選物店，服裝造型與陳列都很有態度。是你路線裡沿 Lê Văn Sỹ 往 Bunnyhill 方向的重點站。", img:"bunnyhill", lat:10.7887309, lng:106.678111, street:"Trần Quang Diệu"},
+      {t:"11:30", name:"wardrobe_arc（一店＋二店）", vi:"wardrobe arc, 351/42 Lê Văn Sỹ, Hồ Chí Minh", type:"shop", note:"Lê Văn Sỹ 上的 vintage／選物店，351/42 與 351/44 兩間相鄰、一次逛完。挖二手與古著的好起點，價格與品項都友善。", img:"wardrobe", lat:10.786409, lng:106.676551, street:"Lê Văn Sỹ"},
+      {t:"12:00", name:"Mozaic Space", vi:"Mozaic Space, 31/23 Lê Văn Sỹ, Hồ Chí Minh", type:"shop", note:"Lê Văn Sỹ 一帶的選物空間，陳列鬆、東西雜但有挖寶感。慢慢翻常能撿到有趣的單品。", img:"mozaic", lat:10.7855198, lng:106.679335, street:"Lê Văn Sỹ"},
+      {t:"12:40", name:"午餐（Lê Văn Sỹ 週邊）", vi:"restaurants near Lê Văn Sỹ, Phú Nhuận, Hồ Chí Minh", type:"food", note:"這一帶小吃多，看當下想吃什麼、用 Capichi 找就好。別逛到忘記吃，先坐下來補一餐。", lat:10.786, lng:106.6785, street:"Lê Văn Sỹ"},
+      {t:"14:00", name:"AAA JEWELRY", vi:"AAA JEWELRY, 149A Nguyễn Phúc Nguyên, Hồ Chí Minh", type:"shop", note:"以飾品為主的選物，古董感陳列很好逛。挑幾件小飾品替造型收個尾。", warn:"🗓️ 這家週二公休；行程排在週一沒問題，營業至 19:00。", img:"aaajewelry", lat:10.7802094, lng:106.6796099, street:"Nguyễn Phúc Nguyên"},
+      {t:"15:30", name:"Facial Bar Võ Thị Sáu", vi:"Facial Bar, 94 Võ Thị Sáu, Hồ Chí Minh", type:"spa", note:"Võ Thị Sáu 上的臉部保養，環境舒服、價格親民。想做臉再排，非必要；一天洗頭＋spa 最多兩項。", img:"facialbar", opt:true, lat:10.7883845, lng:106.6924046, street:"Võ Thị Sáu"},
+      {t:"18:30", name:"晚餐（回第三區方向）", vi:"restaurants Quận 3, Hồ Chí Minh", type:"food", note:"往飯店方向收，晚餐彈性選。逛了一整天，挑一家順路、坐得下的好好吃。", lat:10.786, lng:106.6905, street:"Quận 3"}
     ]
   },
   {
@@ -517,36 +520,36 @@ const DAYS = [
     landmarks:[{name:"Notre-Dame 紅教堂",lat:10.7797,lng:106.6990},{name:"Bến Thành 市場",lat:10.7723,lng:106.6980},{name:"Nguyễn Huệ 步行街",lat:10.7745,lng:106.7035}],
     items:[
       {t:"09:00", name:"Roots Plant-based Cafe", vi:"Roots Plant-based Cafe Ben Thanh, 113-115 Lý Tự Trọng, Hồ Chí Minh", type:"cafe", note:"Bến Thành 一帶的植物系咖啡，拱形空間綠意滿滿，主打全素早餐與冷壓果汁。每日 08:00 開，順路當開場剛好。", img:"roots", lat:10.7741206, lng:106.6975015, street:"Lý Tự Trọng"},
-      {t:"09:30", name:"AIN CLO", vi:"AIN CLO, 9 Phan Chu Trinh, Bến Thành, Hồ Chí Minh", type:"shop", note:"靠近 Bến Thành 的服裝選物，簡約俐落的陳列很好逛。基本款與設計單品都有，是東側掃街的第一站。", img:"ainclo", lat:10.771856, lng:106.6975867, street:"Phan Chu Trinh"},
-      {t:"09:55", name:"Little HaNoi Egg Coffee", vi:"Little HaNoi Egg Coffee, 167 Ký Con, Hồ Chí Minh", type:"cafe", note:"招牌是河內式的雞蛋咖啡，綿密蛋泡浮在濃縮上、甜而不膩。黃色暖調空間很好拍，午前來一杯剛好。", img:"littlehanoi", lat:10.7684166, lng:106.6972218, street:"Ký Con"},
-      {t:"10:20", name:"Waa. Studio", vi:"Waa Studio, 38 Đặng Thị Nhu, Hồ Chí Minh", type:"shop", note:"極簡風的設計小店，門面乾淨、選件有態度。東西不多但很精，適合快速逛一輪。", img:"waa", lat:10.7693334, lng:106.6971012, street:"Đặng Thị Nhu"},
-      {t:"10:45", name:"Vườn Của Mẹ", vi:"Vườn Của Mẹ Juice Smoothie, 98 Lê Lai, Hồ Chí Minh", type:"cafe", note:"現打果汁與冰沙專門店，逛到出汗來一杯最解暑。天然清爽，補水兼補電。", img:"vuoncuame", lat:10.7699503, lng:106.6932613, street:"Lê Lai"},
-      {t:"11:10", name:"Whose Studio", vi:"Whose Studio, 46 Nguyễn Văn Tráng, Hồ Chí Minh", type:"shop", note:"像藝廊一樣的白盒子選物空間，服裝以中性剪裁為主。喜歡安靜挑衣服的話會很自在。", img:"whose", lat:10.7709235, lng:106.6918427, street:"Nguyễn Văn Tráng"},
-      {t:"11:35", name:"Bánh Mì Việt Nam", vi:"Bánh Mì Việt Nam, 60H Lê Thị Riêng, Hồ Chí Minh", type:"food", note:"想墊個胃就帶一個越南麵包，外脆內軟、餡料實在。價格便宜、邊走邊吃，非必要但很順。", img:"banhmi", opt:true, lat:10.7692, lng:106.691, street:"Lê Thị Riêng"},
-      {t:"12:00", name:"Bánh Canh Ghẹ Hẻm Mát", vi:"Bánh Canh Ghẹ Hẻm Mát, 89/3 Nguyễn Trãi, Quận 1, Hồ Chí Minh", type:"food", note:"巷內在地味，招牌是蟹肉粗米線配炒飯，湯頭鮮甜。西側午餐首選，價格親民、份量足。", warn:"💵 只收現金；平日 10:30–13:30、16:30–19:30（你週二 12:20 沒問題）。", img:"banhcanh", lat:10.7697706, lng:106.6916398, street:"Nguyễn Trãi"},
-      {t:"13:30", name:"COMPOUND GARMENT", vi:"COMPOUND GARMENT, 158/5 Nguyễn Công Trứ, Hồ Chí Minh", type:"shop", note:"偏街頭與機能路線的選物店，是你路線裡的重點之一。剪裁俐落、選貨到位，喜歡 city gorpcore 的必看。", img:"compound", lat:10.7689525, lng:106.7013061, street:"Nguyễn Công Trứ"},
-      {t:"13:55", name:"111 Concept Store", vi:"111 Concept Store, 111 Tôn Thất Đạm, Hồ Chí Minh", type:"shop", note:"Vina Design × Đầu Hàng 的複合選物空間，設計品、服飾與生活選物一次逛。往東邊潮流圈的起點，選件很有觀點。", warn:"ℹ️ Google 未列營業時間，出發前用 IG 再確認。", img:"concept111", lat:10.772082, lng:106.702781, street:"Tôn Thất Đạm"},
-      {t:"14:20", name:"LIDER", vi:"LIDER, 07 Tôn Thất Thiệp, Hồ Chí Minh", type:"shop", note:"Tôn Thất Thiệp 小街上的選物店，與 Forward Perfume 同一條、一起逛最順。選件走簡約質感，男女裝都有。", img:"lider", lat:10.7734875, lng:106.7027113, street:"Tôn Thất Thiệp"},
-      {t:"14:40", name:"Forward Perfume", vi:"Forward Perfume, 42/15 Tôn Thất Thiệp, Hồ Chí Minh", type:"shop", note:"42 Tôn Thất Thiệp 老公寓裡的香氛選物，適合挑一支專屬的旅行香。小眾品牌齊、服務細，值得慢慢試。", img:"forward", lat:10.7739, lng:106.702525, street:"Tôn Thất Thiệp"},
-      {t:"15:10", name:"Rue Miche L'édition", vi:"Rue Miche L'édition, 171 Đồng Khởi, Union Square, Hồ Chí Minh", type:"shop", note:"Đồng Khởi 上的精品選物旗艦，空間與選件都很有份量。逛到河邊收尾、順道感受這條殖民風老街。", img:"ruemicheedition", lat:10.7763495, lng:106.7023643, street:"Đồng Khởi"},
+      {t:"10:00", name:"Rue Miche L'édition", vi:"Rue Miche L'édition, 171 Đồng Khởi, Union Square, Hồ Chí Minh", type:"shop", note:"Đồng Khởi 上的精品選物旗艦，空間與選件都很有份量。逛到河邊收尾、順道感受這條殖民風老街。", img:"ruemicheedition", lat:10.7763495, lng:106.7023643, street:"Đồng Khởi"},
+      {t:"10:25", name:"Forward Perfume", vi:"Forward Perfume, 42/15 Tôn Thất Thiệp, Hồ Chí Minh", type:"shop", note:"42 Tôn Thất Thiệp 老公寓裡的香氛選物，適合挑一支專屬的旅行香。小眾品牌齊、服務細，值得慢慢試。", img:"forward", lat:10.7739, lng:106.702525, street:"Tôn Thất Thiệp"},
+      {t:"10:45", name:"LIDER", vi:"LIDER, 07 Tôn Thất Thiệp, Hồ Chí Minh", type:"shop", note:"Tôn Thất Thiệp 小街上的選物店，與 Forward Perfume 同一條、一起逛最順。選件走簡約質感，男女裝都有。", img:"lider", lat:10.7734875, lng:106.7027113, street:"Tôn Thất Thiệp"},
+      {t:"11:05", name:"111 Concept Store", vi:"111 Concept Store, 111 Tôn Thất Đạm, Hồ Chí Minh", type:"shop", note:"Vina Design × Đầu Hàng 的複合選物空間，設計品、服飾與生活選物一次逛。往東邊潮流圈的起點，選件很有觀點。", warn:"ℹ️ Google 未列營業時間，出發前用 IG 再確認。", img:"concept111", lat:10.772082, lng:106.702781, street:"Tôn Thất Đạm"},
+      {t:"11:25", name:"COMPOUND GARMENT", vi:"COMPOUND GARMENT, 158/5 Nguyễn Công Trứ, Hồ Chí Minh", type:"shop", note:"偏街頭與機能路線的選物店，是你路線裡的重點之一。剪裁俐落、選貨到位，喜歡 city gorpcore 的必看。", img:"compound", lat:10.7689525, lng:106.7013061, street:"Nguyễn Công Trứ"},
+      {t:"11:55", name:"AIN CLO", vi:"AIN CLO, 9 Phan Chu Trinh, Bến Thành, Hồ Chí Minh", type:"shop", note:"靠近 Bến Thành 的服裝選物，簡約俐落的陳列很好逛。基本款與設計單品都有，是東側掃街的第一站。", img:"ainclo", lat:10.771856, lng:106.6975867, street:"Phan Chu Trinh"},
+      {t:"12:15", name:"Little HaNoi Egg Coffee", vi:"Little HaNoi Egg Coffee, 167 Ký Con, Hồ Chí Minh", type:"cafe", note:"招牌是河內式的雞蛋咖啡，綿密蛋泡浮在濃縮上、甜而不膩。黃色暖調空間很好拍，午前來一杯剛好。", img:"littlehanoi", lat:10.7684166, lng:106.6972218, street:"Ký Con"},
+      {t:"12:30", name:"Waa. Studio", vi:"Waa Studio, 38 Đặng Thị Nhu, Hồ Chí Minh", type:"shop", note:"極簡風的設計小店，門面乾淨、選件有態度。東西不多但很精，適合快速逛一輪。", img:"waa", lat:10.7693334, lng:106.6971012, street:"Đặng Thị Nhu"},
+      {t:"12:45", name:"Vườn Của Mẹ", vi:"Vườn Của Mẹ Juice Smoothie, 98 Lê Lai, Hồ Chí Minh", type:"cafe", note:"現打果汁與冰沙專門店，逛到出汗來一杯最解暑。天然清爽，補水兼補電。", img:"vuoncuame", lat:10.7699503, lng:106.6932613, street:"Lê Lai"},
+      {t:"13:00", name:"Whose Studio", vi:"Whose Studio, 46 Nguyễn Văn Tráng, Hồ Chí Minh", type:"shop", note:"像藝廊一樣的白盒子選物空間，服裝以中性剪裁為主。喜歡安靜挑衣服的話會很自在。", img:"whose", lat:10.7709235, lng:106.6918427, street:"Nguyễn Văn Tráng"},
+      {t:"13:15", name:"Bánh Canh Ghẹ Hẻm Mát", vi:"Bánh Canh Ghẹ Hẻm Mát, 89/3 Nguyễn Trãi, Quận 1, Hồ Chí Minh", type:"food", note:"巷內在地味，招牌是蟹肉粗米線配炒飯，湯頭鮮甜。西側午餐首選，價格親民、份量足。", warn:"💵 只收現金；平日 10:30–13:30、16:30–19:30（你週二 12:20 沒問題）。", img:"banhcanh", lat:10.7697706, lng:106.6916398, street:"Nguyễn Trãi"},
+      {t:"13:30", name:"Bánh Mì Việt Nam", vi:"Bánh Mì Việt Nam, 60H Lê Thị Riêng, Hồ Chí Minh", type:"food", note:"想墊個胃就帶一個越南麵包，外脆內軟、餡料實在。價格便宜、邊走邊吃，非必要但很順。", img:"banhmi", opt:true, lat:10.7692, lng:106.691, street:"Lê Thị Riêng"},
+      {t:"14:15", name:"Sả Spa & Onsen", vi:"Sả Spa & Onsen, 60 Sương Nguyệt Anh, Hồ Chí Minh", type:"spa", note:"可做全身按摩與洗頭的 spa，環境放鬆、CP 值高。逛累了收尾用，抓 1.5–2 小時。", img:"saspa", opt:true, lat:10.7730852, lng:106.6899802, street:"Sương Nguyệt Anh"},
       {t:"18:00", name:"Cocotte", vi:"Cocotte, 136 Lê Thánh Tôn, Bến Thành, Hồ Chí Minh", type:"food", note:"平價的法式小館，氣氛輕鬆、價格友善。招牌法式家常菜穩定好吃，當購物日晚餐收尾剛好。", img:"cocotte", lat:10.7738063, lng:106.6980024, street:"Lê Thánh Tôn"},
-      {t:"18:00", name:"Sol Kitchen & Bar", vi:"Sol Kitchen & Bar, 110-112 Lý Tự Trọng, Hồ Chí Minh", type:"food", note:"拉丁美洲料理餐酒館，海鮮很有名、調酒也到位。想吃好一點的訂位選擇，晚上來最對味，記得先訂位。", warn:"⏰ 晚市 17:00 起（14:00–17:00 休息）；熱門店，務必先訂位。", img:"sol", opt:true, book:true, lat:10.774107, lng:106.6971367, street:"Lý Tự Trọng"},
-      {t:"20:00", name:"Sả Spa & Onsen", vi:"Sả Spa & Onsen, 60 Sương Nguyệt Anh, Hồ Chí Minh", type:"spa", note:"可做全身按摩與洗頭的 spa，環境放鬆、CP 值高。逛累了收尾用，抓 1.5–2 小時。", img:"saspa", opt:true, lat:10.7730852, lng:106.6899802, street:"Sương Nguyệt Anh"},
-        ]
+      {t:"18:00", name:"Sol Kitchen & Bar", vi:"Sol Kitchen & Bar, 110-112 Lý Tự Trọng, Hồ Chí Minh", type:"food", note:"拉丁美洲料理餐酒館，海鮮很有名、調酒也到位。想吃好一點的訂位選擇，晚上來最對味，記得先訂位。", warn:"⏰ 晚市 17:00 起（14:00–17:00 休息）；熱門店，務必先訂位。", img:"sol", opt:true, book:true, lat:10.774107, lng:106.6971367, street:"Lý Tự Trọng"}
+    ]
   },
   {
     id:"day5", n:5, date:"9/30 WED", zone:"悠閒收尾 · 第一區", zoneVi:"Quận 1",
     note:"離境日，最後一個早晨慢慢過：紅教堂旁的茶室咖啡、郵局與書街，小逛一下就好。18:05 起飛，14:30 出發機場。",
     landmarks:[{name:"Notre-Dame 紅教堂",lat:10.7797,lng:106.6990},{name:"Nguyễn Huệ 步行街",lat:10.7745,lng:106.7035}],
     items:[
-      {t:"09:00", name:"Nicotin Tearoom & Coffee", vi:"Nicotin Tearoom Coffee, 26 Lý Tự Trọng, Bến Nghé, Quận 1, Hồ Chí Minh", type:"cafe", note:"老公寓 2 樓的隱藏茶室，陽台正對紅教堂、早晨有教堂景與鳥鳴。招牌是鹹奶油咖啡與越式茶，最後一天悠閒的開場。", warn:"⏰ 每日 09:00 開門；早到可先在紅教堂周邊走走。", img:"nicotin", lat:10.7788, lng:106.7010, street:"Lý Tự Trọng"},
-      {t:"09:45", name:"西貢中央郵局 Post Office", vi:"Saigon Central Post Office, 2 Công xã Paris, Bến Nghé, Quận 1, Hồ Chí Minh", type:"sight", note:"法式殖民地標，挑高鐵拱屋頂與老地圖壁畫很值得走進去看。隔壁就是紅教堂（整修中，外觀仍可拍）。", lat:10.7799, lng:106.6990, street:"Công xã Paris"},
-      {t:"10:15", name:"書街 Đường Sách", vi:"Đường Sách Nguyễn Văn Bình, 2 Nguyễn Văn Bình, Hồ Chí Minh", type:"sight", note:"郵局旁的書街，綠蔭下慢慢走、翻翻書、拍拍照。是市中心少見的安靜角落，收在最後一天剛好。", img:"bookstreet", lat:10.7800, lng:106.6988, street:"Nguyễn Văn Bình"},
-      {t:"10:50", name:"Reading Cabin", vi:"Reading Cabin, Hẻm 18A/33 Nguyễn Thị Minh Khai, Sài Gòn, Hồ Chí Minh", type:"cafe", note:"巷弄裡的獨立藝術／閱讀空間，賣在地藝術家的手作物、zine 與版畫，也能坐下來喝杯咖啡、翻翻書。跟書街同屬安靜的書系動線，最後一天悠閒收尾、順手挑點有故事的紀念品剛好。", img:"readingcabin", lat:10.78633, lng:106.70027, street:"Nguyễn Thị Minh Khai"},
-      {t:"11:20", name:"Đồng Khởi 一帶小逛", vi:"Đồng Khởi Street, Bến Nghé, Quận 1, Hồ Chí Minh", type:"shop", note:"還想補點什麼就沿 Đồng Khởi 走走，這條殖民風老街精品與咖啡都有。不趕，非必要。", opt:true, lat:10.7772, lng:106.7030, street:"Đồng Khởi"},
+      {t:"09:00", name:"Nicotin Tearoom & Coffee", vi:"Nicotin Tearoom Coffee, 26 Lý Tự Trọng, Bến Nghé, Quận 1, Hồ Chí Minh", type:"cafe", note:"老公寓 2 樓的隱藏茶室，陽台正對紅教堂、早晨有教堂景與鳥鳴。招牌是鹹奶油咖啡與越式茶，最後一天悠閒的開場。", warn:"⏰ 每日 09:00 開門；早到可先在紅教堂周邊走走。", img:"nicotin", lat:10.7782099, lng:106.701047, street:"Lý Tự Trọng"},
+      {t:"09:40", name:"Đồng Khởi 一帶小逛", vi:"Đồng Khởi Street, Bến Nghé, Quận 1, Hồ Chí Minh", type:"shop", note:"還想補點什麼就沿 Đồng Khởi 走走，這條殖民風老街精品與咖啡都有。不趕，非必要。", opt:true, lat:10.7772, lng:106.703, street:"Đồng Khởi"},
+      {t:"10:10", name:"西貢中央郵局 Post Office", vi:"Saigon Central Post Office, 2 Công xã Paris, Bến Nghé, Quận 1, Hồ Chí Minh", type:"sight", note:"法式殖民地標，挑高鐵拱屋頂與老地圖壁畫很值得走進去看。隔壁就是紅教堂（整修中，外觀仍可拍）。", lat:10.7799, lng:106.699, street:"Công xã Paris"},
+      {t:"10:35", name:"書街 Đường Sách", vi:"Đường Sách Nguyễn Văn Bình, 2 Nguyễn Văn Bình, Hồ Chí Minh", type:"sight", note:"郵局旁的書街，綠蔭下慢慢走、翻翻書、拍拍照。是市中心少見的安靜角落，收在最後一天剛好。", img:"bookstreet", lat:10.780963, lng:106.7000734, street:"Nguyễn Văn Bình"},
+      {t:"11:05", name:"Reading Cabin", vi:"Reading Cabin, Hẻm 18A/33 Nguyễn Thị Minh Khai, Sài Gòn, Hồ Chí Minh", type:"cafe", note:"巷弄裡的獨立藝術／閱讀空間，賣在地藝術家的手作物、zine 與版畫，也能坐下來喝杯咖啡、翻翻書。跟書街同屬安靜的書系動線，最後一天悠閒收尾、順手挑點有故事的紀念品剛好。", img:"readingcabin", lat:10.7863321, lng:106.7002698, street:"Nguyễn Thị Minh Khai"},
       {t:"11:50", name:"Pizza 4P's（Hai Bà Trưng 店）", vi:"Pizza 4P's, 151A-151B Hai Bà Trưng, Quận 1, Hồ Chí Minh", type:"food", note:"最後一餐，再回來吃一次 4P's 的窯烤 pizza＋牽絲布拉塔收尾。這家離飯店近、順路，吃飽再回去拿行李。", img:"pizza4ps", lat:10.783116, lng:106.6970677, street:"Hai Bà Trưng"},
-      {t:"13:15", name:"回飯店整理行李", vi:"KiN Hotel Central Park, 223 Hai Bà Trưng, Quận 3, Hồ Chí Minh", type:"hotel", note:"退房、集合、叫車。預留一點 buffer，不要壓線。", lat:10.7880, lng:106.6912, street:"Hai Bà Trưng"},
-      {t:"14:30", name:"出發 → 新山一機場 SGN", vi:"Tan Son Nhat International Airport, Hồ Chí Minh", type:"sight", note:"Grab 到機場約 20–30 分，含塞車 buffer。15:00–15:30 抵達，18:05 起飛登機從容。", lat:10.8180, lng:106.6580, street:""},
+      {t:"13:15", name:"回飯店整理行李", vi:"KiN Hotel Central Park, 223 Hai Bà Trưng, Quận 3, Hồ Chí Minh", type:"hotel", note:"退房、集合、叫車。預留一點 buffer，不要壓線。", lat:10.788, lng:106.6912, street:"Hai Bà Trưng"},
+      {t:"14:30", name:"出發 → 新山一機場 SGN", vi:"Tan Son Nhat International Airport, Hồ Chí Minh", type:"sight", note:"Grab 到機場約 20–30 分，含塞車 buffer。15:00–15:30 抵達，18:05 起飛登機從容。", lat:10.818, lng:106.658, street:""}
     ]
   },
 ];
@@ -683,17 +686,14 @@ function renderTimeline(items,dayid){
   return out;
 }
 function renderItem(i, num){
-  const optCls=i.opt?' opt':'';
   const flags=[i.book?'<span class="flag book">需訂位</span>':'',i.opt?'<span class="flag opt">可選</span>':''].join('');
   const photo=(i.img&&PHOTOS[i.img])?`<div class="c2photo"><img src="${PHOTOS[i.img]}" alt="${esc(i.name)}" loading="lazy"></div>`:'';
-  return `<div class="item">
-    <div class="time mono">${i.t}</div>
-    <div class="node${optCls}">
-      <div class="card2">
+  return `<div class="card2${i.opt?' opt':''}">
         ${photo}
         <div class="c2body">
           <div class="top">
             <span class="stopnum${i.opt?' opt':''}">${num}</span>
+            <span class="tcard">${i.t}</span>
             <span class="nm">${esc(i.name)}</span>
             <span class="chip ${i.type}">${TYPE_ZH[i.type]}</span>
             ${flags}
@@ -702,9 +702,7 @@ function renderItem(i, num){
           ${i.warn?`<div class="warn">${esc(i.warn)}</div>`:''}
           <a class="maplink" href="${mapUrl(i.vi)}" target="_blank" rel="noopener">📍 Google Maps · 看照片</a>
         </div>
-      </div>
-    </div>
-  </div>`;
+      </div>`;
 }
 
 /* ============ MINI MAP (schematic basemap, no tiles) ============ */
